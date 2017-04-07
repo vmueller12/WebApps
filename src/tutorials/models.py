@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Tutorial(models.Model):
@@ -11,3 +12,11 @@ class Tutorial(models.Model):
 
 	def __unicode__(self):
 		return self.title
+
+	# Hardcoded Version of get_absolute_url
+	# def get_absolute_url(self):
+	# 	return "/tutorials/%s/" %(self.id)
+
+	def get_absolute_url(self):
+		return reverse("detail", kwargs={"id": self.id})
+	
